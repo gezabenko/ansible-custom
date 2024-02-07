@@ -1,0 +1,12 @@
+---
+- name: Set issue and motd files from template...
+  become: true
+  ansible.builtin.template:
+    src: issue.j2
+    dest: "{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  with_items: "{{ custom__os_setting_issue_files }}"
+  tags:
+    - os_setting

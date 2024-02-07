@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-custom
+custom__os_setting_issue_files:
+  - "/etc/issue"
+  - "/etc/issue.net"
+  - "/etc/motd"
