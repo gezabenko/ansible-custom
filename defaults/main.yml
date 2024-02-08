@@ -4,3 +4,9 @@ custom__os_setting_issue_file:
   - "/etc/issue"
   - "/etc/issue.net"
   - "/etc/motd"
+custom__package_default:
+  - curl
+  - p7zip
+  - rsync
+  - screen
+  - wget

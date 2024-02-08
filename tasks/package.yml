@@ -1,0 +1,26 @@
+---
+- name: Install packages (Alpine Linux)...
+  become: true
+  community.general.apk:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ lookup('community.general.merge_variables', '^custom__package_.+') }}"
+  when: ansible_os_family == 'Alpine'
+  tags:
+    - package
+    - install
+    - alpine
+
+- name: Install packages (Ubuntu Linux)...
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    cache_valid_time: 14400
+  with_items: "{{ lookup('community.general.merge_variables', '^custom__package_.+') }}"
+  when: ansible_os_family == 'Ubuntu'
+  tags:
+    - package
+    - install
+    - ubuntu
