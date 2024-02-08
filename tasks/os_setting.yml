@@ -7,6 +7,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-  with_items: "{{ custom__os_setting_issue_files }}"
+  with_items: "{{ custom__os_setting_issue_file }}"
   tags:
     - os_setting
+    - config
