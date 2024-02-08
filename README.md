@@ -1,31 +1,51 @@
 Ansible - custom
 =========
 
-Manage custom stuffs with Ansible.
+Manage custom stuffs with Ansible:
+
+- some OS settings (`issue`, `issue.net`,`motd` files)
+- packages
+- `sysctl`
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+NA
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+# os setting:
+# No neccessary variable, automatic generate from issue template file.
+
+# package
+# Install all package from `custom__package_.+` merged list.
+custom__package_all:
+  - openssh
+custom__package_group:
+  - vim
+custom__package_webserver:
+  - nginx
+custom__package:
+  - syslog
+```
+
+> And see `default/main.yml` file.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- [community.general.apk](https://docs.ansible.com/ansible/latest/collections/community/general/apk_module.html) (for package module)
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+ - hosts: servers
+   roles:
+     - { role: custom, tags: [ custom ] }
+```
 
 License
 -------
