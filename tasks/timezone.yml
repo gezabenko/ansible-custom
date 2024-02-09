@@ -1,0 +1,23 @@
+---
+- name: Install tzdata (Alpine Linux)...
+  become: true
+  community.general.apk:
+    name: "tzdata"
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'Alpine'
+  tags:
+    - install
+    - alpine
+    - timezone
+
+- name: Set timezone...
+  become: true
+  community.general.timezone:
+    hwclock: "{{ custom_timezone_hwclock | default(omit) }}"
+    name: "{{ custom_timezone_name }}"
+  when: custom_timezone_name is defined or custom_timezone_hwclock
+  tags:
+    - config
+    - system
+    - timezone
