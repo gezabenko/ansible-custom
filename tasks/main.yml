@@ -1,5 +1,6 @@
 ---
 # tasks file for ansible-custom
-- include_tasks: os_setting.yml
-- include_tasks: timezone.yml
-- include_tasks: package.yml
+- import_tasks: os_setting.yml
+- import_tasks: timezone.yml
+- import_tasks: package.yml
+- import_tasks: lineinfile.yml
